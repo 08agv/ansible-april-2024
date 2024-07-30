@@ -1,0 +1,31 @@
+#names:
+    #hello: hello       # 1hello-key 2hello-value 
+
+- hosts: all
+  become: yes           # become: yes-sudo update
+  tasks: 
+  - name: Install apache httpd  (state=present is optional)
+    ansible.builtin.apt:
+      name: apache2
+      state: present
+      update_cache: yes 
+
+  - name: Install tree
+    ansible.builtin.apt:
+      name: tree 
+
+  - name: Remove tree
+    ansible.builtin.apt:
+      name: tree 
+      state: absent 
+
+  - name: Stop service
+    ansible.builtin.service:
+      name: apache2
+      state: started 
+
+  - name: Start service httpd 
+    ansible.builtin.service:
+      name: apache2
+      state: started
+      enabled: yes       # enabled: yes- sudo systemctl enable
