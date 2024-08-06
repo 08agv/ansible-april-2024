@@ -13,4 +13,10 @@ keyed_groups:
   - key: instance_type
     prefix:  hello
 
+compose:
+  ansible_host: public_ip_address
+  alias: "'{{ tags.Name }}'"
+hostnames:
+  - "tag:Name"
+
   
